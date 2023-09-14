@@ -8,3 +8,10 @@ class Category(BaseModel):
 
     def __str__(self):
         return self.name
+
+class Owner(BaseModel):
+    name = models.CharField(max_length=50)
+    email = models.EmailField(null=True, blank=True)
+
+    def __str__(self):
+        return f"{self.id}: {self.name}"
