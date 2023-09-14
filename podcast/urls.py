@@ -8,3 +8,5 @@ urlpatterns = [
     path("podcasts/", PodcastListView.as_view(), name="podcasts"),
     path("podcast/<int:pk>/", PodcastDetailView.as_view(), name="podcast-detail"),
     path("episodes/", EpisodeListView.as_view(), name="episodes"),
+    path("episode/<int:pk>/", EpisodeDetailView.as_view(), name="episode-detail"),
+]
