@@ -21,3 +21,11 @@ class Parser:
     item_tag_pattern = re.compile("<item>((\n|.)*?)</item>")
     tag_pattern = re.compile("<([^\<\> ]*)(?:\s*(\S*)=\"([^\"]*?)\"[^\>]*)*>")
     key_value_pair_pattern = re.compile('([^ ]*?)=\"(.*?)\"')
+
+    def __init__(self, rss_path=None, rss_file=None, save=False):
+        self.rss_path = rss_path
+        self.rss_file = rss_file or self._read_rss_file()
+        self.podcast_obj = None
+        self.episodes_obj = list()
+        self.save_podcast_in_db() if save is True else None
+        self.save_episode_in_db() if save is True else None
