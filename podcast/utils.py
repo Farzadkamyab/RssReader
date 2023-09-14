@@ -108,7 +108,8 @@ class Parser:
         generator = Generator.objects.create(name=pod.generator)
         image = Image.objects.create(url=pod.url)
         owner = Owner.objects.create(name=pod.itunes_name, email=pod.itunes_email)
-        self.owner_name = pod.itunes_name
+        self.owner_name = owner.name
+        
         podcast_object = Podcast.objects.create(
             title = pod.title,
             language = pod.language,
