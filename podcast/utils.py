@@ -16,3 +16,8 @@ class EpisodeModel:
         self.pubDate=pubDate
         self.link=link
         self.itunes_title=itunes_title
+
+class Parser:
+    item_tag_pattern = re.compile("<item>((\n|.)*?)</item>")
+    tag_pattern = re.compile("<([^\<\> ]*)(?:\s*(\S*)=\"([^\"]*?)\"[^\>]*)*>")
+    key_value_pair_pattern = re.compile('([^ ]*?)=\"(.*?)\"')
