@@ -24,3 +24,9 @@ class PodcastDetailView(APIView):
         query = Podcast.objects.get(pk=pk)
         ser_data = PodcastSerializer(instance=query)
         return Response(ser_data.data, status=status.HTTP_200_OK)
+
+class EpisodeListView(APIView):
+    def get(self, request):
+        query = Episode.objects.all()
+        ser_data = EpisodeSerializer(instance=query, many=True)
+        return Response(ser_data.data, status=status.HTTP_200_OK)
