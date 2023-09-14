@@ -27,6 +27,7 @@ class Parser:
         self.rss_file = rss_file or self._read_rss_file()
         self.podcast_obj = None
         self.episodes_obj = list()
+        self.owner_name = None
         self.save_podcast_in_db() if save is True else None
         self.save_episode_in_db() if save is True else None
 
@@ -66,6 +67,7 @@ class Parser:
             podcast.pubDate = "Tue, 05 Sep 2023 08:00:00 -0000"
 
         podcast.itunes_category = category_value[0][1]
+        self.owner_name = podcast.itunes_name
         return podcast
 
     def check_exist(self):
@@ -98,7 +100,6 @@ class Parser:
 
         return episode_list
 
-    owner_name = None
     def save_podcast_in_db(self):
         #--save podcast--#
         assert self.check_exist() == False, "Podcast already exist."
@@ -108,8 +109,6 @@ class Parser:
         generator = Generator.objects.create(name=pod.generator)
         image = Image.objects.create(url=pod.url)
         owner = Owner.objects.create(name=pod.itunes_name, email=pod.itunes_email)
-        self.owner_name = owner.name
-        
         podcast_object = Podcast.objects.create(
             title = pod.title,
             language = pod.language,
