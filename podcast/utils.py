@@ -130,3 +130,44 @@ class Parser:
         podcast_object.save()
         self.podcast_obj = podcast_object
         return podcast_object
+    
+    def save_episode_in_db(self):
+        #--save episode--#
+        assert self.check_exist() == False, "Episodes already exist."
+        episodes = self.get_episode_data()
+        res_list = list()
+        author_list = list()
+        dict_list = dict()
+
+        for i in episodes:
+            if i.author is None:
+                author = dict_list.get(self.owner_name) or EpisodeAuthor(name=self.owner_name)
+                dict_list[self.owner_name] = author
+                author_list.append(author)
+            else:
+                author = dict_list.get(i.author) or EpisodeAuthor(name=i.author)
+                dict_list[i.author] = author
+                author_list.append(author)
+
+        uniq_list = dict_list.values()
+        EpisodeAuthor.objects.bulk_create(uniq_list)
+
+        for index, episode in enumerate(episodes):
+            e = Episode(
+                title = episode.title,
+                guid = episode.guid,
+                itunes_duration = episode.itunes_duration,
+                itunes_episode_type = episode.itunes_episodeType,
+                itunes_explicit = episode.itunes_explicit,
+                description = episode.description,
+                enclosure = episode.enclosure,
+                link = episode.link,
+                pub_date = dt.datetime.strptime(episode.pubDate, "%a, %d %b %Y %H:%M:%S %z"),
+                itunes_keywords = None if not hasattr(episode, "itunes_keywords") else episode.itunes_keywords,
+                itunes_player = None if not hasattr(episode, "itunes_player") else episode.itunes_player,
+                episode_podcast = self.podcast_obj,
+                episode_author = author_list[index]
+            )
+            res_list.append(e)
+            # self.episodes_obj.append(e)
+        Episode.objects.bulk_create(res_list)
