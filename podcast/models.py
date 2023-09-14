@@ -15,3 +15,11 @@ class Owner(BaseModel):
 
     def __str__(self):
         return f"{self.id}: {self.name}"
+
+class Image(BaseModel):
+    title = models.CharField(max_length=100, null=True, blank=True)
+    link = models.URLField(null=True, blank=True)
+    url = models.URLField()
+
+    def __str__(self):
+        return f"{self.id}: {self.title}"
