@@ -23,3 +23,11 @@ class Image(BaseModel):
 
     def __str__(self):
         return f"{self.id}: {self.title}"
+
+class Generator(BaseModel):
+    name = models.CharField(max_length=100)
+    hostname = models.CharField(max_length=150,null=True,blank=True)
+    genDate = models.DateTimeField(null=True,blank=True)
+
+    def __str__(self):
+        return f"{self.id}: {self.name}"
