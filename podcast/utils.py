@@ -171,3 +171,6 @@ class Parser:
             res_list.append(e)
             # self.episodes_obj.append(e)
         Episode.objects.bulk_create(res_list)
+
+    def update_exist_podcast(self):
+        ...
