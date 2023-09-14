@@ -67,3 +67,15 @@ class Parser:
 
         podcast.itunes_category = category_value[0][1]
         return podcast
+
+    def check_exist(self):
+        podcast_py_model = self.get_podcast_data()
+        episode_py_model = self.get_episode_data()
+        old_author = PodcastAuthor.objects.filter(name=podcast_py_model.itunes_author)
+        if old_author:
+            old_podcast = Podcast.objects.filter(title=podcast_py_model.title, link=podcast_py_model.link, author=old_author.first())
+            if old_podcast:
+                old_episode = Episode.objects.filter(guid=episode_py_model[0].guid)
+                if old_episode:
+                    return True
+        return False
