@@ -30,3 +30,9 @@ class EpisodeListView(APIView):
         query = Episode.objects.all()
         ser_data = EpisodeSerializer(instance=query, many=True)
         return Response(ser_data.data, status=status.HTTP_200_OK)
+
+class EpisodeDetailView(APIView):
+    def get(self, request, pk):
+        query = Episode.objects.get(pk=pk)
+        ser_data = EpisodeSerializer(instance=query)
+        return Response(ser_data.data, status=status.HTTP_200_OK)
