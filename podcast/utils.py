@@ -29,3 +29,8 @@ class Parser:
         self.episodes_obj = list()
         self.save_podcast_in_db() if save is True else None
         self.save_episode_in_db() if save is True else None
+
+    def _read_rss_file(self):
+        with open(self.rss_path, "rt", encoding="utf-8") as file:
+            rss_file = file.read()
+        return rss_file
