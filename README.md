@@ -1,44 +1,72 @@
-Rss-feed
-Project Description 📢
+## Project Description 📢
+
 This project aims to develop an RSS feed aggregator using Django. The aggregator will extract and store data from various RSS feed sources, including APIs and custom XML feeds. It will implement advanced parsing techniques, data mapping, and flexible schema design to accommodate diverse feed structures. The project will also include custom JWT authentication using Redis to store access tokens and utilize and PostgreSQL as the database.
 
 Follow these steps to set up the project locally:
 
-👉 Clone the repository:
+1. 👉 Clone the repository:
 
-git clone https://github.com/Farzadkamyab/RssReader.git
-👉 Create a virtual environment (optional but recommended):
+   ```bash
+   git clone https://github.com/Farzadkamyab/RssReader.git
+   ```
 
-python -m venv venv
-👉 Activate the virtual environment:
+2. 👉 Create a virtual environment (optional but recommended):
 
-On Windows:
+   ```bash
+   python -m venv venv
+   ```
 
-venv\Scripts\activate
-On macOS and Linux:
+3. 👉 Activate the virtual environment:
 
-source venv/bin/activate
-👉 Install project dependencies:
+   - On Windows:
 
-pip install -r requirements.txt
-👉 Run migrations to create the database schema:
+     ```bash
+     venv\Scripts\activate
+     ```
 
-python manage.py migrate
-👉 Start the Django development server:
+   - On macOS and Linux:
 
-python manage.py runserver
-The project should now be running locally at http://localhost:8000/.✅
+     ```bash
+     source venv/bin/activate
+     ```
 
-🌟 Parse Podcasts
-To parse the podcast feeds and populate your database with podcast episodes, you can use the following management command:
+4. 👉 Install project dependencies:
 
-python manage.py parse_podcast
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+5. 👉 Run migrations to create the database schema:
+
+   ```bash
+   python manage.py migrate
+   ```
+
+6. 👉 Start the Django development server:
+
+   ```bash
+   python manage.py runserver
+   ```
+
+The project should now be running locally at `http://localhost:8000/`.✅
+
+
+## 🌟 Parse Podcasts
+
+To parse the podcast feeds and populate your database with podcast episodes:
+
+```bash
+you can use post method and send rss file, it parse and save to database automatically.
+```
+
 This command will trigger the parsing process, fetching the RSS feeds you added through the Django admin panel and updating your database with podcast episode data.
 
-Usage of Project
+
+## Usage of Project
+
 To use these endpoints, you can make GET and POST requests to the URLs listed above as per your requirements. For example:
 
-To list all podcasts, make a GET request to /podcasts/.
-To retrieve details of a specific podcast with ID 1, make a GET request to /podcasts/1/.
-To list episodes of a specific podcast with ID 1, make a GET request to /podcasts/1/episodes/.
-To retrieve details of a specific episode with ID 1, make a GET request to /episodes/1/.-
+- To list all podcasts, make a GET request to `/podcast/podcasts`.
+- To retrieve details of a specific podcast with ID 1, make a GET request to `podcast/podcast/1/`.
+- To list all episodes, make a GET request to `/podcast/episodes/`.
+- To retrieve details of a specific episode with ID 1, make a GET request to `podcast/episode/1/`.-
