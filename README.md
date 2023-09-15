@@ -6,7 +6,7 @@ Follow these steps to set up the project locally:
 
 👉 Clone the repository:
 
-git clone https://github.com/Mohammad-R-N/Rss-feed.git
+git clone https://github.com/Farzadkamyab/RssReader.git
 👉 Create a virtual environment (optional but recommended):
 
 python -m venv venv
