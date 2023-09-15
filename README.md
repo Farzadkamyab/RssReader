@@ -1,4 +1,4 @@
-## Project Description 📢
+## Project Description
 
 This project aims to develop an RSS feed aggregator using Django. The aggregator will extract and store data from various RSS feed sources, including APIs and custom XML feeds. It will implement advanced parsing techniques, data mapping, and flexible schema design to accommodate diverse feed structures. The project will also include custom JWT authentication using Redis to store access tokens and utilize and PostgreSQL as the database.
 
@@ -51,21 +51,11 @@ Follow these steps to set up the project locally:
 The project should now be running locally at `http://localhost:8000/`.✅
 
 
-## 🌟 Parse Podcasts
-
-To parse the podcast feeds and populate your database with podcast episodes:
-
-```bash
-you can use post method and send rss file, it parse and save to database automatically.
-```
-
-This command will trigger the parsing process, fetching the RSS feeds you added through the Django admin panel and updating your database with podcast episode data.
-
-
 ## Usage of Project
 
 To use these endpoints, you can make GET and POST requests to the URLs listed above as per your requirements. For example:
 
+- To parse and save rss file to database automatically, make a POST request with "xml" key and send your rss file to `podcast/import/`
 - To list all podcasts, make a GET request to `/podcast/podcasts`.
 - To retrieve details of a specific podcast with ID 1, make a GET request to `podcast/podcast/1/`.
 - To list all episodes, make a GET request to `/podcast/episodes/`.
